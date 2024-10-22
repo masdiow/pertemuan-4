@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Mahasiswa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        input {
+            display: block;
+            margin-bottom: 10px;
+            padding: 10px;
+            width: 100%;
+            max-width: 400px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+        }
+        .clock {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="clock" id="clock"></div>
+
+    <div id="form-container" class="form-container">
+        <form id="form">
+            <input type="text" id="nama" placeholder="Nama" oninput="toUppercase(this)">
+            <input type="number" id="nim" placeholder="NIM">
+            <select id="Gender" placeholder="Gender">
+            <option selected disabled option>--Pilih Jenis Kelamin</option><br><br>
+        <option>Laki-Laki</option><br><br>
+        <option>Perempuan</option><br><br>
+            </select>
+        </form>
+    </div>
+
+    <button onclick="addForm()">Tambah Form</button>
+    <button onclick="submitForm()">Submit</button>
+
+    <script>
+        // Function untuk membuat nama otomatis menjadi uppercase
+        function toUppercase(input) {
+            input.value = input.value.toUpperCase();
+        }
+
+        // Function untuk menambahkan form baru
+        function addForm() {
+            const formContainer = document.getElementById('form-container');
+            const newForm = document.createElement('form');
+            newForm.innerHTML = `
+                <input type="text" placeholder="Nama" oninput="toUppercase(this)">
+                <input type="text" placeholder="NIM">
+                <select type="option">  <option selected disabled option>--Pilih Jenis Kelamin</option> <option>Laki-Laki</option> <option>Perempuan</option>
+            `;
+            formContainer.appendChild(newForm);
+        }
+
+        // Function untuk submit form
+        function submitForm() {
+            alert("Selamat data telah berhasil di simpan");
+            location.reload(); // Refresh page setelah submit
+        }
+
+        // Function untuk mengupdate jam setiap detik
+        function updateClock() {
+            const clockElement = document.getElementById('clock');
+            const now = new Date();
+            clockElement.innerText = now.toLocaleTimeString();
+        }
+
+        // Panggil updateClock setiap 1 detik
+        setInterval(updateClock, 1000);
+    </script>
+
+</body>
+</html>
